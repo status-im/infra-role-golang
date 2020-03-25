@@ -1,0 +1,68 @@
+---
+- name: Load platform dependent info
+  include_vars: '{{ ansible_os_family }}.yml'
+
+- name: Golang | Uninstall APT version
+  apt:
+    name: golang
+    state: absent
+    autoremove: true
+  when: ansible_os_family == "Debian"
+
+- name: Golang | Uninstall APT version
+  homebrew:
+    name: golang
+    state: absent
+  when: ansible_os_family == "Darwin"
+
+- name: Golang | Check if binary exists
+  stat:
+    path: '{{ golang_bin_path }}'
+    get_checksum: false
+  register: go_bin
+
+- name: Golang | Check binary version
+  command: '{{ golang_bin_path }} version'
+  register: go_bin_ver
+  when: go_bin.stat.exists
+
+- name: Golang | Extract version
+  set_fact:
+    go_version: |-
+      {{ go_bin_ver.stdout
+      | regex_replace("go version go(.*) linux/"+golang_arch, "\1") }}
+  when: go_bin.stat.exists
+
+- name: 'Golang | Install: {{ golang_version | mandatory }}'
+  when: not go_bin.stat.exists or go_version != golang_version
+  block:
+    - name: Golang | Remove old installation
+      file:
+        path: '{{ golang_path }}'
+        state: absent
+
+    - name: Golang | Download tarball
+      get_url:
+        url: '{{ golang_url }}'
+        dest: '/tmp/{{ golang_tar }}'
+        checksum: 'md5:{{ golang_md5 }}'
+    
+    - name: Golang | Extract tarball
+      unarchive:
+        src: '/tmp/{{ golang_tar }}'
+        dest: '/usr/local'
+        remote_src: yes
+      environment:
+        PATH: '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+
+    - name: Golang | Symlink go binary
+      file:
+        src: '/usr/local/go/bin/go'
+        path: '/usr/local/bin/go'
+        state: link
+        force: true
+    
+    - name: Golang | Remove tarball
+      file:
+        path: '/tmp/{{ golang_tar }}'
+        state: absent

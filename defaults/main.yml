@@ -1,0 +1,8 @@
+---
+golang_version: '1.13.4'
+golang_arch: ~
+golang_md5: ~
+golang_tar: 'go{{ golang_version }}.{{ golang_platform }}-{{ golang_arch }}.tar.gz'
+golang_url: 'https://dl.google.com/go/{{ golang_tar }}'
+golang_path: '/usr/local/go'
+golang_bin_path: '/usr/local/go/bin/go'
