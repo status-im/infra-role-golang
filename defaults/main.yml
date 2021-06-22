@@ -1,5 +1,5 @@
 ---
-golang_version: '1.13.4'
+golang_version: '1.15.13'
 golang_arch: ~
 golang_md5: ~
 golang_tar: 'go{{ golang_version }}.{{ golang_platform }}-{{ golang_arch }}.tar.gz'
