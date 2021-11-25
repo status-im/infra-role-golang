@@ -45,7 +45,7 @@
       get_url:
         url: '{{ golang_url }}'
         dest: '/tmp/{{ golang_tar }}'
-        checksum: 'md5:{{ golang_md5 }}'
+        checksum: 'sha256:{{ golang_sha256 }}'
     
     - name: Golang | Extract tarball
       unarchive:
