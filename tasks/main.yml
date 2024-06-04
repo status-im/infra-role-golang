@@ -9,7 +9,8 @@
     autoremove: true
   when: ansible_os_family == "Debian"
 
-- name: Golang | Uninstall APT version
+- name: Golang | Uninstall Brew version
+  become_user: admin
   homebrew:
     name: golang
     state: absent
@@ -46,7 +47,7 @@
         url: '{{ golang_url }}'
         dest: '/tmp/{{ golang_tar }}'
         checksum: 'sha256:{{ golang_sha256 }}'
-    
+
     - name: Golang | Extract tarball
       unarchive:
         src: '/tmp/{{ golang_tar }}'
@@ -61,7 +62,7 @@
         path: '/usr/local/bin/go'
         state: link
         force: true
-    
+
     - name: Golang | Remove tarball
       file:
         path: '/tmp/{{ golang_tar }}'
