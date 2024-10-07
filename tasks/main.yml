@@ -63,6 +63,13 @@
         state: link
         force: true
 
+    - name: Golang | Add GOPATH to system-wide PATH
+      lineinfile:
+        path: /etc/profile.d/golang.sh
+        line: 'export PATH=$PATH:$(go env GOPATH)/bin'
+        create: yes
+        mode: '0644'
+
     - name: Golang | Remove tarball
       file:
         path: '/tmp/{{ golang_tar }}'
