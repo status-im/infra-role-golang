@@ -9,6 +9,13 @@
     autoremove: true
   when: ansible_os_family == "Debian"
 
+- name: Golang | Uninstall go-bindata
+  become_user: admin
+  homebrew:
+    name: go-bindata
+    state: absent
+  when: ansible_os_family == "Darwin"
+
 - name: Golang | Uninstall Brew version
   become_user: admin
   homebrew:
