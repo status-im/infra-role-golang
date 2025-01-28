@@ -1,4 +1,4 @@
 ---
 golang_arch: 'arm64'
 golang_platform: 'linux'
-golang_sha256: '6c33e52a5b26e7aa021b94475587fce80043a727a54ceb0eee2f9fc160646434'
+golang_sha256: '5213c5e32fde3bd7da65516467b7ffbfe40d2bb5a5f58105e387eef450583eec'

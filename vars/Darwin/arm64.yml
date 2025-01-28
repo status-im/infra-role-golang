@@ -1,4 +1,4 @@
 ---
 golang_arch: 'arm64'
 golang_platform: 'darwin'
-golang_sha256: '02abeab3f4b8981232237ebd88f0a9bad933bc9621791cd7720a9ca29eacbe9d'
+golang_sha256: '21cf49415ffe0755b45f2b63e75d136528a32f7bb7bdd0166f51d22a03eb0a3f'
