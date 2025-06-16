@@ -1,7 +1,7 @@
 ---
 golang_version: '1.23.10'
 golang_arch: ~
-golang_md5: ~
+golang_sha256: ~
 golang_tar: 'go{{ golang_version }}.{{ golang_platform }}-{{ golang_arch }}.tar.gz'
 golang_url: 'https://dl.google.com/go/{{ golang_tar }}'
 golang_path: '/usr/local/go'

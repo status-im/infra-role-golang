@@ -5,7 +5,9 @@ This role installs Go language binary from standard downloads available at https
 # Configuration
 
 ```yaml
-golang_version: '1.11'
-golang_bin_md5: 739cd3ed627b5d7fb8a24c61a3f8505f
-golang_src_md5: 19a4e7ce81d67e8d98cf92c3c0b36596
+golang_version: '1.23.10'
+golang_arch: 'arm64'
+golang_platform: 'darwin'
+golang_sha256: '25c64bfa8a8fd8e7f62fb54afa4354af8409a4bb2358c2699a1003b733e6fce5'
 ```
+
